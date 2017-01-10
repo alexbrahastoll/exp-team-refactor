@@ -10,4 +10,8 @@ class Team
   def add_member(name)
     members << Member.new(name)
   end
+
+  def member_names
+    members.map(&:name)
+  end
 end

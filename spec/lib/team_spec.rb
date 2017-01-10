@@ -21,4 +21,15 @@ RSpec.describe Team do
       expect(team.members).to eq(expected_team_members)
     end
   end
+
+  describe '#member_names' do
+    it 'does return an array with the names of the members of the team' do
+      team = Team.new
+      team.add_member('Alex')
+      team.add_member('Anna')
+      expected_member_names = ['Alex', 'Anna']
+
+      expect(team.member_names).to eq(expected_member_names)
+    end
+  end
 end
