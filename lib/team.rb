@@ -6,4 +6,8 @@ class Team
   def initialize
     @members = []
   end
+
+  def add_member(name)
+    members << Member.new(name)
+  end
 end
