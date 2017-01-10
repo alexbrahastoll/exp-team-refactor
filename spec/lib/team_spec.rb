@@ -32,4 +32,61 @@ RSpec.describe Team do
       expect(team.member_names).to eq(expected_member_names)
     end
   end
+
+  describe '#print_member_names' do
+    let(:team) do
+      team = Team.new
+      team.add_member('aLEX')
+      team.add_member('aNNA')
+      team.add_member('jAN')
+
+      team
+    end
+
+    context 'when we want just part of the members and want to capitalize their names' do
+      it 'does print the member names' do
+        expect($stdout).to receive(:puts).with('Alex').ordered
+        expect($stdout).to receive(:puts).with('Anna').ordered
+
+        team.print_member_names(limit: 2,
+          member_name_presentation: ->(name) { puts name.capitalize })
+      end
+    end
+
+    context 'when we want to revert their order and also revert and downcase their names' do
+      it 'does print the member names' do
+        expect($stdout).to receive(:puts).with('naj').ordered
+        expect($stdout).to receive(:puts).with('anna').ordered
+        expect($stdout).to receive(:puts).with('xela').ordered
+
+        team.print_member_names(member_names_transformation: :reverse,
+          member_name_presentation: ->(name) { puts name.reverse.downcase })
+      end
+    end
+
+    context 'when we want to have a title printed before the member names list' do
+      context 'when we want to print them in their original order' do
+        it 'does print the member names' do
+          expect($stdout).to receive(:puts).with('Members:').ordered
+          expect($stdout).to receive(:puts).with('aLEX').ordered
+          expect($stdout).to receive(:puts).with('aNNA').ordered
+          expect($stdout).to receive(:puts).with('jAN').ordered
+
+          team.print_member_names(title: 'Members:')
+        end
+      end
+
+      context 'when we want to shuffle the members' do
+        it 'does print the member names' do
+          expect($stdout).to receive(:puts).with('Members:').ordered
+          expect($stdout).to receive(:puts).with('aLEX')
+          expect($stdout).to receive(:puts).with('aNNA')
+          expect($stdout).to receive(:puts).with('jAN')
+
+          team.print_member_names(title: 'Members:',
+            member_names_transformation: :shuffle)
+        end
+      end
+    end
+  end
 end
