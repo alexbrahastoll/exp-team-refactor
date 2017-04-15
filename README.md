@@ -1,10 +1,9 @@
 # Team refactor
 
-Refactoring of a provided Ruby class.
+Refactoring of a sample Ruby class.
 
-Developed by Alex Braha Stoll as part of Reedsy's Engineer Evaluation (this is the answer to Q3).
-
-*You can see the answers for the other questions [here](https://gist.github.com/alexbrahastoll/3b5ccc192936b14c9716914412cf65cc).*
+**This is just a simple experiment. The most interesting bit is the usage of Ruby 2.2.0's itself method
+(at `Team#print_member_names`).**
 
 ## Improvements
 
